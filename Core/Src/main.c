@@ -112,9 +112,9 @@ int main(void)
 
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
 
-    char SensorNotify1[50];
-    char SensorNotify2[50];
-    char SensorNotify3[50];
+    char SensorNotify1[5];
+    char SensorNotify2[5];
+    //char SensorNotify3[50];
 
     /* USER CODE END 2 */
 
@@ -156,28 +156,28 @@ int main(void)
         {
             // transmit data to esp8266
             HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_SET);
-            strcpy(SensorNotify1, "/Status/slot1: full");
+            strcpy(SensorNotify1, "1:f/n");
             UART_SendString(SensorNotify1);
         }
         else
         {
             HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_RESET);
-            strcpy(SensorNotify1, "/Status/slot1: available");
+            strcpy(SensorNotify1, "1:e/n");
             UART_SendString(SensorNotify1);
         }
 
         // Sensor 2
-        if (HCSR04_CompareDistance(&UltraSensor[1], 9))
+        if (HCSR04_CompareDistance(&UltraSensor[1], 5))
         {
             // transmit data to esp8266
             HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-            strcpy(SensorNotify2, "/Status/slot2: full");
+            strcpy(SensorNotify2, "2:f/n");
             UART_SendString(SensorNotify2);
         }
         else
         {
             HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_RESET);
-            strcpy(SensorNotify2, "/Status/slot2: available");
+            strcpy(SensorNotify2, "2:e/n");
             UART_SendString(SensorNotify2);
         }
 
